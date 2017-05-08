@@ -1,6 +1,8 @@
 
 #include "ofApp.h"
 
+int a;
+
 //--------------------------------------------------------------
 
 void ofApp::setup(){
@@ -16,6 +18,10 @@ void ofApp::setup(){
     
     /*----------------------文字(particle)----------------------*/
     text = test_NUM[0];
+    
+    
+    
+    
     //パーティクルの半径の設定
     radius = 2;
     
@@ -84,12 +90,18 @@ void ofApp::setup(){
 
 void ofApp::update(){
     /*-----------------------ofxOsc(受信のやつ)-----------------------*/
-    while(receiver.hasWaitingMessages()){
-        ofxOscMessage m;
-        receiver.getNextMessage(&m);
-        if(m.getAddress() == "/key/sentences"){
-        }
-    }
+//    while(receiver.hasWaitingMessages()){
+//        ofxOscMessage m;
+//        receiver.getNextMessage(&m);
+//        if(m.getAddress() == "/key/sentences"){
+//            int num = m.getArgAsInt(0);
+//            string* sentences = new string[num];
+//            for (int a = 0; a < num; a++) {
+//                sentences[a] = m.getArgAsString(a+1);
+//                printf("%s", sentences[a].c_str());
+//            }
+//        }
+//    }
     
     /*-----------------------文字(particle)-----------------------*/
     
@@ -158,6 +170,21 @@ void ofApp::draw(){
     
      ofBackground(0, 0, 0);
 
+    while(receiver.hasWaitingMessages()){
+        ofxOscMessage m;
+        receiver.getNextMessage(&m);
+        if(m.getAddress() == "/key/sentences"){
+            int num = m.getArgAsInt(0);
+            string* sentences = new string[num];
+            for (int a = 0; a < num; a++) {
+                sentences[a] = m.getArgAsString(a+1);
+                printf("%s", sentences[a].c_str());
+               // type_word.drawString(sentences[a].c_str(), ofGetWidth()/2-220 , ofGetHeight()/2);
+            }
+        }
+    }
+    
+    
     for(int i=0; i<cpos.size(); i++){
         ofSetColor(color[i]);
         ofDrawCircle(cpos[i].x, cpos[i].y, radius);

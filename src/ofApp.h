@@ -38,6 +38,8 @@ public:
     std::vector<std::string> test_NUM = {
         "test_zero" };
     
+    
+    
     /*----------------------色の指定（ランダム）----------------------*/
     float red[NUM];
     float green[NUM];
