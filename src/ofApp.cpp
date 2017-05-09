@@ -17,7 +17,10 @@ void ofApp::setup(){
     //ofSetBackgroundAuto(false);
     
     /*----------------------文字(particle)----------------------*/
-    text = test_NUM[0];
+    
+    
+    
+    text = test_NUM[0];//ここで表示するテキストを設定
     
     
     
@@ -169,7 +172,12 @@ void ofApp::draw(){
     /*----------------------文字(particle)----------------------*/
     
      ofBackground(0, 0, 0);
-
+    
+    
+    
+    
+    
+    /*-----------------------OSC部分-----------------------*/
     while(receiver.hasWaitingMessages()){
         ofxOscMessage m;
         receiver.getNextMessage(&m);
@@ -183,6 +191,13 @@ void ofApp::draw(){
             }
         }
     }
+    
+    
+    
+    
+    
+    
+    
     
     
     for(int i=0; i<cpos.size(); i++){

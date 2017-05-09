@@ -34,9 +34,23 @@ public:
     /*----------------------フォントを指定----------------------*/
     ofTrueTypeFont type_word;
     
+    
+    
+    
+    
+    
+    
+    
+    
     /*----------------------描画される文字（テスト）----------------------*/
     std::vector<std::string> test_NUM = {
         "test_zero" };
+    
+    string text;                  //出力する文字列
+    
+    
+    
+    
     
     
     
@@ -58,11 +72,6 @@ public:
     bool once;
     
     
-    
-    
-    
-    
-    string text;                  //出力する文字列
     
     vector<ofColor> color; //パーティクルの色
     vector<ofPoint> cpos;  //パーティクルの現在位置
