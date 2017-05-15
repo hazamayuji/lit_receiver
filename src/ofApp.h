@@ -12,7 +12,9 @@ public:
     void setup();
     void update();
     void draw();
-
+    
+    void draw_particle();
+    void osc_word();
     
     void keyPressed(int key);
     void keyReleased(int key);
@@ -33,17 +35,10 @@ public:
     ofTrueTypeFont type_word;
     
     /*----------------------描画される文字（テスト）----------------------*/
-    std::vector<std::string> test_NUM = {
-        "test_zero" };
-    
-    string text;                  //出力する文字列
-    
-    
-    
-    
-    
-    
-    
+    //std::vector<std::string> test_NUM = {"test_zero" };
+     
+    string text;
+    //std::vector<std::string> text_array;                  //出力する文字列
     
     /*----------------------色の指定（ランダム）----------------------*/
     float red[NUM];
@@ -71,5 +66,12 @@ public:
     
     bool isKeyPressed;           //キーを押下した/していない
     int radius;                  //パーティクルの半径
+    
+    
+    int time = 0;
+    
+    
+    bool draw_rect =  false;
+
     
 };
