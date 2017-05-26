@@ -33,6 +33,7 @@ public:
     
     /*----------------------フォントを指定----------------------*/
     ofTrueTypeFont type_word;
+    ofTrueTypeFont type_word_small;
     
     /*----------------------描画される文字（テスト）----------------------*/
     //std::vector<std::string> test_NUM = {"test_zero" };
@@ -51,14 +52,8 @@ public:
     float rect_w[NUM];
     float rect_h[NUM];
     
-    /*----------------------3D空間に----------------------*/
-    ofEasyCam cam;
-    
-    
-    bool once;
-    
-    
-    
+    /*----------------------パーティクル----------------------*/
+
     vector<ofColor> color; //パーティクルの色
     vector<ofPoint> cpos;  //パーティクルの現在位置
     vector<ofPoint> gpos;  //パーティクルの目標位置
@@ -67,11 +62,11 @@ public:
     bool isKeyPressed;           //キーを押下した/していない
     int radius;                  //パーティクルの半径
     
+
+    //float time_now = 0;
+    //bool particle_atumaru = false;
     
-    int time = 0;
-    
-    
-    bool draw_rect =  false;
+    bool word_draw = false;
 
     
 };

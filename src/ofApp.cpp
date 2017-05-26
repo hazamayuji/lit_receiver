@@ -10,6 +10,8 @@ void ofApp::setup(){
     receiver.setup(PORT);
     /*----------------------フォントを指定----------------------*/
     type_word.load("Anders.ttf", 50,true, true, true, 0.3, 0);
+    type_word_small.load("Anders.ttf", 20,true, true, true, 0.3, 0);
+
     
     // フレーム更新時に前のフレームで描画したものを消さない
     //ofSetBackgroundAuto(false);
@@ -57,12 +59,6 @@ void ofApp::update(){
             }
         }
     }
-    
-    
-    
-    
-    
-    
 }
 
 //--------------------------------------------------------------
@@ -76,13 +72,44 @@ void ofApp::draw(){
     osc_word();
     
     /*-----------------------いっぱいの円の描画-----------------------*/
-  
     for(int i=0; i<cpos.size(); i++){
         ofSetColor(ofRandom(0,255), ofRandom(0,255), ofRandom(0,255));
         ofDrawRectangle(cpos[i].x, cpos[i].y, radius, radius);
     }
     
-   
+    if(cover > 0){
+        word_draw = true;
+    }
+    
+    if(word_draw){
+        ofSetColor(255,255,255);
+        type_word_small.drawString("please press space key", ofGetWidth()/2-180 ,  80);
+    }
+    
+    /*
+    //int ms = ofGetElapsedTimeMillis() % 1000;
+    int s = ofGetSeconds();
+    cout << s;
+    time_now = s % 3;
+    
+    const static int ftime= 100;
+    
+    if(time_now == 1 ){
+        particle_atumaru = true;
+    }else if(time_now == 0 ) {
+        particle_atumaru = false;
+    }
+    
+    if(particle_atumaru){
+        isKeyPressed = !isKeyPressed;
+        for(int i=0; i<vel.size(); i++){
+            vel[i].x = (isKeyPressed) ? (gpos[i].x-cpos[i].x)/ftime : ofRandom(-1, 1);
+            vel[i].y = (isKeyPressed) ? (gpos[i].y-cpos[i].y)/ftime : ofRandom(-1, 1);
+        }
+
+    }
+    */
+    
 }
 
 //--------------------------------------------------------------
@@ -102,16 +129,20 @@ void ofApp::osc_word(){
             int num = m.getArgAsInt(0);
             //ポインタ＝より効率的にメモリを使用できる
             string *sentences = new string[num];
-            
-            for (int i= 0; i < num; i++) {
+            for (int i = 0; i < num; i++) {
+                
                 //sentences[i]に初期値をi+1としてそこに送信されてきた文字を代入
                 sentences[i] = m.getArgAsString(i+1);
                 //コンソールに表示
                 printf("%s", sentences[i].c_str());
-                cout << i << endl;
+                //cout << i << endl;
+                
                 //真ん中に表示する文字を代入
                 text = text + sentences[i].c_str();
             }
+            printf("\n--------------------------------");
+
+        
             //関数:円をたくさん描画
             draw_particle();
         }
@@ -129,7 +160,6 @@ void ofApp::osc_word(){
     }
      
      */
-    
 }
 
 //--------------------------------------------------------------
@@ -187,7 +217,6 @@ void ofApp::draw_particle(){
             }
         }
     }
-
     
     for(int i  = 0; i < gpos.size(); i++){
         cpos.push_back(ofPoint(ofRandom(ofGetWidth()/2 - 200, ofGetWidth()/2 + 200), ofRandom(ofGetHeight()/2 - 200, ofGetHeight()/2 + 200)));
@@ -211,9 +240,7 @@ void ofApp::keyPressed(int key){
             }
             break;
     }
-    
 }
-
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
